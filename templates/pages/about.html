@@ -1,0 +1,102 @@
+{% extends 'basic.html'%}
+{% load static %}
+{% block title%} About Us {%endblock%}
+{% block content %}
+
+ <section id="showcase-inner" class="py-5 text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <h1 class="display-4">About Khanpur Real Estate</h1>
+          <p class="lead">We strive to provide a high level of professional services!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <section id="bc" class="mt-3">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{% url 'index' %}">
+              <i class="fas fa-home"></i> Home</a>
+          </li>
+          <li class="breadcrumb-item active"> About</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <section id="about" class="py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <h2>We Search For The Perfect Home</h2>
+          <p class="lead">Khanpur real estate is a pioneering real estate portal that helps buyers and renters streamline their eproperty search!</p>
+          <img src="{% static 'img/about.jpg' %}" alt="">
+          <p class="mt-4">Khanpur real estate is a complete real estate platform that providing a wide range of real estate properties investments opportunities in residential and commercial areas including houses, apartments, villas, ban glows, farm houses, residential plots, commercial plots, shops in markets and plazas.</p>
+        </div>
+        <div class="col-md-4">
+          {% if mvp_realtors %}
+          {% for realtor in mvp_realtors %}
+           <div class="card">
+            <img class="card-img-top" src="{{ realtor.photo.url }}" width="100px" height="350px" alt="Seller of the month">
+            <div class="card-body">
+              <h5 class="card-title">Seller Of The Month</h5>
+              <h6 class="text-secondary">{{ realtor.name }}</h6>
+              <p class="card-text"> {{ realtor.description }}
+              </p>
+            </div>
+          </div>
+
+          {% endfor %}
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work -->
+  <section id="work" class="bg-dark text-white text-center">
+    <h2 class="display-4">We Work For You</h2>
+    <h4>Khanpur real estate is a brand-new cutting-edge real-estate marketing platform, providing solutions for your residential needs!</h4>
+    <hr>
+    <a href=" {% url 'listings' %}" class="btn btn-secondary text-white btn-lg">View Our Featured Listings</a>
+  </section>
+
+  <!-- Team -->
+  <section id="team" class="py-5">
+    <div class="container">
+      <h2 class="text-center">Our Team</h2>
+      <div class="row text-center">
+        {% if realtors %}
+        {% for realtor in realtors %}
+         <div class="col-md-4">
+          <img src="{{ realtor.photo.url }}" width=80px" height="350px" alt="" class="rounded-circle mb-3">
+          <h4>{{ realtor.name }}</h4>
+          <p class="text-success">
+            <i class="fas fa-award text-success mb-3"></i> Realtor</p>
+          <hr>
+          <p>
+            <i class="fas fa-phone"></i> {{ realtor.phone }}</p>
+          <p>
+            <i class="fas fa-envelope-open"></i> {{ realtor.email }}</p>
+        </div>
+
+        {% endfor %}
+
+
+        {% else %}
+        <div class="col-md-12"><p></p>No Realtors Available</div>
+        {%  endif%}
+
+
+
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
