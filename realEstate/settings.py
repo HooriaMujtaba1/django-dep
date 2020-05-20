@@ -145,3 +145,9 @@ MESSAGE_TAGS = {
 # EMAIL_HOST_USER = 'bilalsharif4@gmail.com'
 # EMAIL_HOST_PASSWORD = 'Samsung_on5'
 # EMAIL_USE_TLS = True
+
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
